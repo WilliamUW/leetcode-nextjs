@@ -43,6 +43,15 @@ function SolutionShowcase({ solutions, codeStub, reward }) {
 
         <Button
           onClick={() => {
+            alert("Deploying smart contract to testnet: " + codeStub);
+          }}
+        >
+          Deploy
+        </Button>
+
+
+        <Button
+          onClick={() => {
             alert(
               "Congrats on completing the challenge! You have received the reward: " +
                 reward
