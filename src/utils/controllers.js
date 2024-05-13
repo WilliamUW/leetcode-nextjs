@@ -126,8 +126,7 @@ export async function getQuestionsList(term) {
 }
 
 export async function getQuestion(qid) {
-  console.log(qid)
-  const question = questions.find((question) => question.QID === qid);
+  const question = [questions[qid - 1]];
   // let { data, error } = await supabase
   //   .from("questions")
   //   .select("*")

@@ -13,9 +13,7 @@ export const revalidate = 2500;
 export default async function QuestionsPage({ params: { qid } }) {
   if (!isInteger(qid)) notFound();
 
-  // const { data } = await getQuestion(qid);
-  const data = [questions[qid - 1]];
-  console.log(qid, data);
+  const { data } = await getQuestion(qid);
   if (!data) notFound();
   const { data: similarQuestions } = await getSimilarQuestions(qid);
   return (
