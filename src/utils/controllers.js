@@ -3,111 +3,104 @@ import supabase from "./supabase";
 export const questions = [
   {
     QID: 1,
-    title: "Two Sum",
-    titleSlug: "two-sum",
-    difficulty: "Easy",
-    acceptanceRate: 52.55396011650703,
+    title: "Optimize Gas Usage in ERC-20 Token Contract",
+    titleSlug: "optimize-erc20-gas-usage",
+    difficulty: "Hard",
+    acceptanceRate: 28.42,
     paidOnly: false,
-    topicTags: "array, hash-table",
+    topicTags: "blockchain, smart-contracts, ethereum",
     Hints: [],
-    Body: "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice. You can return the answer in any order.",
-    categorySlug: "algorithms",
+    Body: "The current implementation of our ERC-20 token smart contract consumes an excessive amount of gas for transactions. Your task is to refactor the contract to reduce gas consumption without altering the functionality. Submit your optimized Solidity code along with a comparison of gas usage before and after your optimizations.",
+    categorySlug: "blockchain",
+    reward: "15 ETH",
+    Code: `
+    pragma solidity ^0.8.0;
+
+    contract ERC20Token {
+        mapping(address => uint256) public balances;
+        mapping(address => mapping(address => uint256)) public allowed;
+        uint256 public totalSupply;
+
+        constructor(uint256 initialSupply) {
+            balances[msg.sender] = totalSupply = initialSupply;
+        }
+
+        function transfer(address to, uint256 value) public returns (bool) {
+            require(balances[msg.sender] >= value, "Insufficient balance");
+            balances[msg.sender] -= value;
+            balances[to] += value;
+            emit Transfer(msg.sender, to, value);
+            return true;
+        }
+
+        function approve(address delegate, uint256 numTokens) public returns (bool) {
+            allowed[msg.sender][delegate] = numTokens;
+            emit Approval(msg.sender, delegate, numTokens);
+            return true;
+        }
+
+        function allowance(address owner, address delegate) public view returns (uint) {
+            return allowed[owner][delegate];
+        }
+
+        function transferFrom(address owner, address buyer, uint256 numTokens) public returns (bool) {
+            require(numTokens <= balances[owner], "Insufficient balance");
+            require(numTokens <= allowed[owner][msg.sender], "Insufficient allowance");
+
+            balances[owner] -= numTokens;
+            allowed[owner][msg.sender] -= numTokens;
+            balances[buyer] += numTokens;
+            emit Transfer(owner, buyer, numTokens);
+            return true;
+        }
+
+        event Transfer(address indexed from, address indexed to, uint256 tokens);
+        event Approval(address indexed owner, address indexed delegate, uint256 tokens);
+    }
+    `
   },
   {
     QID: 2,
-    title: "Add Two Numbers",
-    titleSlug: "add-two-numbers",
-    difficulty: "Medium",
-    acceptanceRate: 42.859950980345964,
-    paidOnly: false,
-    topicTags: "linked-list, math, recursion",
-    Hints: [],
-    Body: "You are given two non-empty linked lists represented as two non-negative integers. The digits are stored in reverse order and each of their nodes contains a single digit. Add the two numbers and return it as a linked list.",
-    categorySlug: "algorithms",
-  },
-  {
-    QID: 3,
-    title: "Longest Substring Without Repeating Characters",
-    titleSlug: "longest-substring-without-repeating-characters",
-    difficulty: "Medium",
-    acceptanceRate: 34.793623837071145,
-    paidOnly: false,
-    topicTags: "hash-table, string, sliding-window",
-    Hints: [],
-    Body: "Given a string, find the length of the longest substring without repeating characters.",
-    categorySlug: "algorithms",
-  },
-  {
-    QID: 4,
-    title: "Median of Two Sorted Arrays",
-    titleSlug: "median-of-two-sorted-arrays",
+    title: "Secure a DeFi Smart Contract",
+    titleSlug: "secure-defi-smart-contract",
     difficulty: "Hard",
-    acceptanceRate: 40.04547290244275,
+    acceptanceRate: 19.76,
     paidOnly: false,
-    topicTags: "array, binary-search, divide-and-conquer",
+    topicTags: "blockchain, defi, security",
     Hints: [],
-    Body: "Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.",
-    categorySlug: "algorithms",
-  },
-  {
-    QID: 5,
-    title: "Longest Palindromic Substring",
-    titleSlug: "longest-palindromic-substring",
-    difficulty: "Medium",
-    acceptanceRate: 33.86432425465342,
-    paidOnly: false,
-    topicTags: "two-pointers, string, dynamic-programming",
-    Hints: [],
-    Body: "Given a string s, find the longest palindromic substring in s.",
-    categorySlug: "algorithms",
-  },
-  {
-    QID: 6,
-    title: "Zigzag Conversion",
-    titleSlug: "zigzag-conversion",
-    difficulty: "Medium",
-    acceptanceRate: 47.999998555342835,
-    paidOnly: false,
-    topicTags: "string",
-    Hints: [],
-    Body: "The string 'PAYPALISHIRING' is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)",
-    categorySlug: "algorithms",
-  },
-  {
-    QID: 7,
-    title: "Reverse Integer",
-    titleSlug: "reverse-integer",
-    difficulty: "Medium",
-    acceptanceRate: 28.614205433266893,
-    paidOnly: false,
-    topicTags: "math",
-    Hints: [],
-    Body: "Given a 32-bit signed integer, reverse digits of an integer.",
-    categorySlug: "algorithms",
-  },
-  {
-    QID: 8,
-    title: "String to Integer (atoi)",
-    titleSlug: "string-to-integer-atoi",
-    difficulty: "Medium",
-    acceptanceRate: 17.26314621599306,
-    paidOnly: false,
-    topicTags: "string",
-    Hints: [],
-    Body: "Implement the myAtoi(string s) function, which converts a string to a 32-bit signed integer (similar to C/C++'s atoi function).",
-    categorySlug: "algorithms",
-  },
-  {
-    QID: 9,
-    title: "Palindrome Number",
-    titleSlug: "palindrome-number",
-    difficulty: "Easy",
-    acceptanceRate: 56.37926183311811,
-    paidOnly: false,
-    topicTags: "math",
-    Hints: [],
-    Body: "Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.",
-    categorySlug: "algorithms",
+    Body: "We have identified potential security vulnerabilities in our DeFi platform's smart contract, specifically in the functions handling liquidity withdrawals. Review the contract, identify security flaws, and provide a secure version of the contract code. Details of vulnerabilities and how they are addressed must be included in your submission.",
+    categorySlug: "blockchain",
+    reward: "20 ETH",
+    Code: `
+    pragma solidity ^0.8.0;
+
+    interface IERC20 {
+        function totalSupply() external view returns (uint256);
+        function balanceOf(address account) external view returns (uint256);
+        function transfer(address recipient, uint256 amount) external returns (bool);
+        function allowance(address owner, address spender) external view returns (uint256);
+        function approve(address spender, uint256 amount) external returns (bool);
+        function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
+        event Transfer(address indexed from, address indexed to, uint256 value);
+        event Approval(address indexed owner, address indexed spender, uint256 value);
+    }
+
+    contract DeFiPlatform {
+        address public admin;
+        IERC20 public token;
+
+        constructor(address tokenAddress) {
+            admin = msg.sender;
+            token = IERC20(tokenAddress);
+        }
+
+        function withdrawToken(uint256 amount) public {
+            require(msg.sender == admin, "Unauthorized");
+            require(token.balanceOf(address(this)) >= amount, "Insufficient balance");
+            token.transfer(msg.sender, amount);
+        }
+    }
+    `
   }
 ];
 
