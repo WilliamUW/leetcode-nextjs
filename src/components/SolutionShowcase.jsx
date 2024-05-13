@@ -1,10 +1,10 @@
 "use client";
 
 import CodeMirror from "@uiw/react-codemirror";
-import { python } from "@codemirror/lang-python";
 import { EditorView } from "@codemirror/view";
-import { githubDark } from "@uiw/codemirror-theme-github";
 import SolutionTabs from "./SolutionTabs";
+import { githubDark } from "@uiw/codemirror-theme-github";
+import { python } from "@codemirror/lang-python";
 
 function SolutionShowcase({ solutions, codeStub }) {
   return (
@@ -12,7 +12,7 @@ function SolutionShowcase({ solutions, codeStub }) {
       <div className="font-bold text-left mb-2">Solutions</div>
       <div className="font-bold text-left mb-2">
         <div>
-          {solutions.length > 0 ? (
+          {solutions && solutions.length > 0 ? (
             <SolutionTabs solutions={solutions} />
           ) : (
             <CodeMirror

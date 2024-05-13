@@ -1,9 +1,11 @@
-import { getQuestion, getSimilarQuestions } from "@/utils/controllers";
-import QuestionNavigator from "@/components/QuestionNavigator";
+import { getQuestion, getSimilarQuestions, questions } from "@/utils/controllers";
+
 import { QuestionBody } from "@/components/QuestionBody";
-import { notFound } from "next/navigation";
-import isInteger from "@/utils/isInteger";
+import QuestionNavigator from "@/components/QuestionNavigator";
 import SolutionShowcase from "@/components/SolutionShowcase";
+import isInteger from "@/utils/isInteger";
+import { notFound } from "next/navigation";
+
 isInteger;
 
 export const revalidate = 2500;
@@ -11,7 +13,9 @@ export const revalidate = 2500;
 export default async function QuestionsPage({ params: { qid } }) {
   if (!isInteger(qid)) notFound();
 
-  const { data } = await getQuestion(qid);
+  // const { data } = await getQuestion(qid);
+  const data = [questions[qid - 1]];
+  console.log(qid, data);
   if (!data) notFound();
   const { data: similarQuestions } = await getSimilarQuestions(qid);
   return (

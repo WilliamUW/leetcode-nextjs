@@ -32,3 +32,4 @@ yarn-error.log*
 .vercel
 /public/robots.txt
 /public/*.xml
+.env

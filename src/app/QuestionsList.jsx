@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import Paginate from "@/components/Paginate2";
-import { SiPython } from "react-icons/si";
 import { BsLockFill } from "react-icons/bs";
 import Link from "next/link";
+import Paginate from "@/components/Paginate2";
+import { SiPython } from "react-icons/si";
+import { useState } from "react";
 
 export default function QuestionsList({ questions }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -86,7 +86,7 @@ export default function QuestionsList({ questions }) {
                   {question.difficulty}
                 </td>
                 <td className="px-3 py-2 text-left font-thin hidden sm:block">
-                  {question.topicTags.join(", ")}
+                  {question.topicTags}
                 </td>
               </tr>
             ))}
