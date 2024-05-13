@@ -12,19 +12,19 @@ function SolutionShowcase({ solutions, codeStub }) {
       <div className="font-bold text-left mb-2">Solutions</div>
       <div className="font-bold text-left mb-2">
         <div>
-          {solutions && solutions.length > 0 ? (
+          {false && solutions && solutions.length > 0 ? (
             <SolutionTabs solutions={solutions} />
           ) : (
             <CodeMirror
               value={codeStub}
               extensions={[python({}), EditorView.lineWrapping]}
               theme={githubDark}
-              readOnly={true}
+              readOnly={false} // Set readOnly to false to make it editable
               autoFocus={true}
               basicSetup={{
                 lineWrapping: true,
                 highlightActiveLineGutter: false,
-                editable: false,
+                editable: true,
               }}
               className="indent-1"
             />
