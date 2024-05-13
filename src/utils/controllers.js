@@ -12,7 +12,7 @@ export const questions = [
     Hints: [],
     Body: "The current implementation of our ERC-20 token smart contract consumes an excessive amount of gas for transactions. Your task is to refactor the contract to reduce gas consumption without altering the functionality. Submit your optimized Solidity code along with a comparison of gas usage before and after your optimizations.",
     categorySlug: "blockchain",
-    reward: "15 ETH",
+    reward: "0.01 ETH",
     Code: `
     pragma solidity ^0.8.0;
 
@@ -70,7 +70,7 @@ export const questions = [
     Hints: [],
     Body: "We have identified potential security vulnerabilities in our DeFi platform's smart contract, specifically in the functions handling liquidity withdrawals. Review the contract, identify security flaws, and provide a secure version of the contract code. Details of vulnerabilities and how they are addressed must be included in your submission.",
     categorySlug: "blockchain",
-    reward: "20 ETH",
+    reward: "0.05 ETH",
     Code: `
     pragma solidity ^0.8.0;
 

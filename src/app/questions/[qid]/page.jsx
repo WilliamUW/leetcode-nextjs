@@ -36,6 +36,7 @@ export default async function QuestionsPage({ params: { qid } }) {
             <SolutionShowcase
               solutions={data[0].solutions}
               codeStub={data[0].Code}
+              reward={data[0].reward}
             />
           )}
         </div>
